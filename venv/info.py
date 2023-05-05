@@ -1,6 +1,11 @@
 from flask import Flask, request, render_template
 import requests
 
+from flask_login import LoginManager
+login_manager = LoginManager()
+print("hi")
+print(login_manager)
+print("goodbye")
 app = Flask(__name__)
 
 @app.route("/", methods = ["GET", "POST"])
@@ -105,4 +110,4 @@ def see_result():
         result = request.form
         return render_template("home.html", restaurant_name = name, address = formatted_address, summary = overview, phone_number = formatted_phone_number, website_link = website, reservations = reservable, ratings = rating, total_ratings = user_ratings_total, makes_deliveries = delivery, result = result)
 
-    
+login_manager.init_app(app)
