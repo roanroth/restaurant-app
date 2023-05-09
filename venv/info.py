@@ -1,14 +1,38 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, session, redirect, url_for
 import requests
 
 from flask_login import LoginManager
 login_manager = LoginManager()
-print("hi")
-print(login_manager)
-print("goodbye")
+
 app = Flask(__name__)
 
-@app.route("/", methods = ["GET", "POST"])
+app.secret_key = "f7d994471694d69335822a81c5ece50ef2df8863d6c20c3a1be66824894d49f4"
+
+@app.route('/')
+def index():
+    if 'username' in session:
+        return f'Logged in as {session["username"]}'
+    return 'You are not logged in'
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        session['username'] = request.form['username']
+        return redirect(url_for('index'))
+    return '''
+        <form method="post">
+            <p><input type=text name=username>
+            <p><input type=submit value=Login>
+        </form>
+    '''
+
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
+@app.route("/search/", methods = ["GET", "POST"])
 def search_restaurant():
     return render_template("index.html")
 
