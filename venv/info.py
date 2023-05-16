@@ -1,38 +1,9 @@
-from flask import Flask, request, render_template, session, redirect, url_for
+from flask import Flask, request, render_template, g
 import requests
-
-from flask_login import LoginManager
-login_manager = LoginManager()
 
 app = Flask(__name__)
 
-app.secret_key = "f7d994471694d69335822a81c5ece50ef2df8863d6c20c3a1be66824894d49f4"
-
-@app.route('/')
-def index():
-    if 'username' in session:
-        return f'Logged in as {session["username"]}'
-    return 'You are not logged in'
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        session['username'] = request.form['username']
-        return redirect(url_for('index'))
-    return '''
-        <form method="post">
-            <p><input type=text name=username>
-            <p><input type=submit value=Login>
-        </form>
-    '''
-
-@app.route('/logout')
-def logout():
-    # remove the username from the session if it's there
-    session.pop('username', None)
-    return redirect(url_for('index'))
-
-@app.route("/search/", methods = ["GET", "POST"])
+@app.route("/", methods = ["GET", "POST"])
 def search_restaurant():
     return render_template("index.html")
 
@@ -41,6 +12,7 @@ def search_restaurant():
 @app.route("/home/", methods = ["GET", "POST"])
 def see_result():
     q = request.args.get("q")
+    g.global_name = ""
     restaurant_name = str(q)
     URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + restaurant_name + "&inputtype=textquery&key=AIzaSyA_ybZQmfLjIyDVYe70wth69R25CMy9kww"
     r = requests.get(url = URL)
@@ -55,6 +27,7 @@ def see_result():
     formatted_data = {}
     if "name" in result:
         name = result["name"]
+        g.global_name = name
         formatted_data["name: "] = name
         print(name)
     else:
@@ -132,6 +105,10 @@ def see_result():
 
     if request.method == "GET":
         result = request.form
-        return render_template("home.html", restaurant_name = name, address = formatted_address, summary = overview, phone_number = formatted_phone_number, website_link = website, reservations = reservable, ratings = rating, total_ratings = user_ratings_total, makes_deliveries = delivery, result = result)
+        return render_template("home.html", restaurant_name = g.global_name, address = formatted_address, summary = overview, phone_number = formatted_phone_number, website_link = website, reservations = reservable, ratings = rating, total_ratings = user_ratings_total, makes_deliveries = delivery, result = result)
 
-login_manager.init_app(app)
+
+@app.route("/favorites/<string:q>", methods = ["GET", "POST"])
+def see_favorites(q: str):
+    url_name = request.args.get("q")
+    return render_template("favorites.html", restaurant_name = url_name)
