@@ -1,7 +1,14 @@
-from flask import Flask, request, render_template, g
+class MyServer:
+    def __init__(self):
+        self.favorites = []
+        self.current_restaurant = None
+
+from flask import Flask, request, render_template
 import requests
 
 app = Flask(__name__)
+
+my_server = MyServer()
 
 @app.route("/", methods = ["GET", "POST"])
 def search_restaurant():
@@ -12,7 +19,6 @@ def search_restaurant():
 @app.route("/home/", methods = ["GET", "POST"])
 def see_result():
     q = request.args.get("q")
-    g.global_name = ""
     restaurant_name = str(q)
     URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + restaurant_name + "&inputtype=textquery&key=AIzaSyA_ybZQmfLjIyDVYe70wth69R25CMy9kww"
     r = requests.get(url = URL)
@@ -27,7 +33,6 @@ def see_result():
     formatted_data = {}
     if "name" in result:
         name = result["name"]
-        g.global_name = name
         formatted_data["name: "] = name
         print(name)
     else:
@@ -103,12 +108,14 @@ def see_result():
     else:
         delivery = ""
 
+    my_server.current_restaurant = name
+
     if request.method == "GET":
         result = request.form
-        return render_template("home.html", restaurant_name = g.global_name, address = formatted_address, summary = overview, phone_number = formatted_phone_number, website_link = website, reservations = reservable, ratings = rating, total_ratings = user_ratings_total, makes_deliveries = delivery, result = result)
+        return render_template("home.html", restaurant_name = name, address = formatted_address, summary = overview, phone_number = formatted_phone_number, website_link = website, reservations = reservable, ratings = rating, total_ratings = user_ratings_total, makes_deliveries = delivery, result = result)
 
 
-@app.route("/favorites/<string:q>", methods = ["GET", "POST"])
-def see_favorites(q: str):
-    url_name = request.args.get("q")
-    return render_template("favorites.html", restaurant_name = url_name)
+@app.route("/favorites/", methods = ["GET", "POST"])
+def send_to_favorites():
+    my_server.favorites.append(my_server.current_restaurant)
+    return render_template("favorites.html", favorites = my_server.favorites)

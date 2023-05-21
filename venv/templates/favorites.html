@@ -6,7 +6,22 @@
         <link rel="stylesheet" href="stylesheet.css">
     </head>
     <body>
-        <h1><b>{{restaurant_name}}</b></h1>
+        <h1><b>Favorites</b></h1>
+
+       {% if favorites %} 
+       <p>No restauarants in favorites.</p>
+       {% else %}
+
+        <ul>
+            {%for x in favorites %}
+                <li>{{x}}</li>
+            {% endfor %}
+        </ul>
+
+        {% endif %}
+            
+        <br>
+        <a href="http://127.0.0.1:5000/"><button>Back to Search</button></a>
 <!-- 
         <p>{{summary}}</p>
 
