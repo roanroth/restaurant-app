@@ -8,34 +8,15 @@
     <body>
         <h1><b>Favorites</b></h1>
 
-       {% if favorites %} 
-       <p>No restauarants in favorites.</p>
-       {% else %}
-
+      
         <ul>
             {%for x in favorites %}
                 <li>{{x}}</li>
             {% endfor %}
         </ul>
-
-        {% endif %}
             
         <br>
         <a href="http://127.0.0.1:5000/"><button>Back to Search</button></a>
-<!-- 
-        <p>{{summary}}</p>
 
-        <p>{{address}}</p>
-
-        <p>{{phone_number}}</p>
-
-        <p><a href = {{website_link}}>{{website_link}}</a></p>
-
-        <p>Rating: {{ratings}}, Total ratings: {{total_ratings}}</p>
-        <p>{{reservations}}</p>
-        <p>{{makes_deliveries}}</p>
-        <br>
-        <a href="http://127.0.0.1:5000/favorites"><button>Save to Favorites</button></a>
-         -->
     </body>
 </html>

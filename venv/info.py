@@ -1,6 +1,6 @@
 class MyServer:
     def __init__(self):
-        self.favorites = []
+        self.favorites = set()
         self.current_restaurant = None
 
 from flask import Flask, request, render_template
@@ -117,5 +117,11 @@ def see_result():
 
 @app.route("/favorites/", methods = ["GET", "POST"])
 def send_to_favorites():
-    my_server.favorites.append(my_server.current_restaurant)
-    return render_template("favorites.html", favorites = my_server.favorites)
+    no_favorites = ["No restaurants in Favorites."]
+    if my_server.current_restaurant is None:
+        return render_template("favorites.html", favorites = no_favorites)
+    else:
+        my_server.favorites.add(my_server.current_restaurant)
+        return render_template("favorites.html", favorites = my_server.favorites)
+    # when we click see favorites from home page after looking up a restaurant but not adding to favorites, it is added to favorites regardless
+    
