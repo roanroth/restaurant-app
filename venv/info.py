@@ -12,6 +12,8 @@ my_server = MyServer()
 
 @app.route("/", methods = ["GET", "POST"])
 def search_restaurant():
+    if my_server.current_restaurant is not None:
+        my_server.current_restaurant = False
     return render_template("index.html")
 
 # first opens search-restaurant which opens index. then that takes us to home.html (below) with all the info 
@@ -29,6 +31,7 @@ def see_result():
 
     restaurant_info = requests.get(url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + place_id + "&key=AIzaSyA_ybZQmfLjIyDVYe70wth69R25CMy9kww")
     details = restaurant_info.json()
+    print(details)
     result = details["result"]
     formatted_data = {}
     if "name" in result:
@@ -117,11 +120,11 @@ def see_result():
 
 @app.route("/favorites/", methods = ["GET", "POST"])
 def send_to_favorites():
-    no_favorites = ["No restaurants in Favorites."]
+    no_favorites = []
     if my_server.current_restaurant is None:
         return render_template("favorites.html", favorites = no_favorites)
-    else:
+    elif my_server.current_restaurant is not False:
         my_server.favorites.add(my_server.current_restaurant)
-        return render_template("favorites.html", favorites = my_server.favorites)
+    return render_template("favorites.html", favorites = my_server.favorites)
     # when we click see favorites from home page after looking up a restaurant but not adding to favorites, it is added to favorites regardless
     
