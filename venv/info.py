@@ -2,6 +2,7 @@ class MyServer:
     def __init__(self):
         self.favorites = set()
         self.current_restaurant = None
+        self.reviews = {}
 
 from flask import Flask, request, render_template
 import requests
@@ -119,12 +120,19 @@ def see_result():
 
 
 @app.route("/favorites/", methods = ["GET", "POST"])
-def send_to_favorites():
+def send_to_favorites(): #shows favorites and adds to favorites
+    review = ""
+    if request.args.get("review"):
+        review = request.args.get("review")
+        x = request.args.get("name")
+        print(x)
+        my_server.reviews[my_server.current_restaurant] = review
+        return render_template("favorites.html", favorites = my_server.favorites, review = my_server.reviews)
     no_favorites = []
-    if my_server.current_restaurant is None:
+    if my_server.current_restaurant is None: #no restaurants to save
         return render_template("favorites.html", favorites = no_favorites)
-    elif my_server.current_restaurant is not False:
+    elif my_server.current_restaurant is not False: #we are saving the restaurant
         my_server.favorites.add(my_server.current_restaurant)
-    return render_template("favorites.html", favorites = my_server.favorites)
-    # when we click see favorites from home page after looking up a restaurant but not adding to favorites, it is added to favorites regardless
+        my_server.reviews[my_server.current_restaurant] = ""
+    return render_template("favorites.html", favorites = my_server.favorites, review = my_server.reviews)
     
