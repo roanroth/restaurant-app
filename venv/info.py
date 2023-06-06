@@ -121,18 +121,21 @@ def see_result():
 
 @app.route("/favorites/", methods = ["GET", "POST"])
 def send_to_favorites(): #shows favorites and adds to favorites
-    review = ""
-    if request.args.get("review"):
-        review = request.args.get("review")
-        x = request.args.get("name")
-        print(x)
-        my_server.reviews[my_server.current_restaurant] = review
-        return render_template("favorites.html", favorites = my_server.favorites, review = my_server.reviews)
     no_favorites = []
     if my_server.current_restaurant is None: #no restaurants to save
         return render_template("favorites.html", favorites = no_favorites)
     elif my_server.current_restaurant is not False: #we are saving the restaurant
         my_server.favorites.add(my_server.current_restaurant)
-        my_server.reviews[my_server.current_restaurant] = ""
-    return render_template("favorites.html", favorites = my_server.favorites, review = my_server.reviews)
+        if my_server.current_restaurant not in my_server.reviews:
+            my_server.reviews[my_server.current_restaurant] = ""
+    return render_template("favorites.html", favorites = my_server.favorites, reviews = my_server.reviews)
     
+@app.route("/reviewed/", methods = ["GET", "POST"])
+def reviewed(): 
+    if request.args.get("review"):
+        review = request.args.get("review")
+        # x = request.args.get("name")
+        # print(x)
+        my_server.reviews[my_server.current_restaurant] = review
+        print(my_server.reviews)
+        return render_template("reviewed.html", review = review, reviews = my_server.reviews)

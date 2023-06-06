@@ -12,13 +12,14 @@
         <ul>
             {%for x in favorites %}
                 <li>{{x}}</li>
-                <p>{{review[x]}}</p>
-                <form action="http://127.0.0.1:5000/favorites" method="GET">
-                    <input type="text" id="review" name="{{x}}" value="{{review}}">
-                    <br><br>
+                <p>{{reviews[x]}}</p>
+                <form action="http://127.0.0.1:5000/reviewed/" method="GET">
+                    <input type="text" id="review" name="review" value="">
+                    <br>
                          <button type="submit" id="button">Add Review</button> 
                     <br>
                 </form>
+                <br>
             {% endfor %}
         </ul>
             
