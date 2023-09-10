@@ -134,8 +134,10 @@ def send_to_favorites(): #shows favorites and adds to favorites
 def reviewed(): 
     if request.args.get("review"):
         review = request.args.get("review")
+        restname = request.args.get("restname")
+        print(restname)
         # x = request.args.get("name")
         # print(x)
-        my_server.reviews[my_server.current_restaurant] = review
+        my_server.reviews[restname] = review
         print(my_server.reviews)
         return render_template("reviewed.html", review = review, reviews = my_server.reviews)

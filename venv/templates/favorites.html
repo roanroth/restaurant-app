@@ -15,6 +15,7 @@
                 <p>{{reviews[x]}}</p>
                 <form action="http://127.0.0.1:5000/reviewed/" method="GET">
                     <input type="text" id="review" name="review" value="">
+                    <input type="hidden" name="restname" value={{x}}>
                     <br>
                          <button type="submit" id="button">Add Review</button> 
                     <br>
