@@ -10,7 +10,7 @@
 
       
         <ul>
-            {%for x in favorites %}
+            {%for x in favorites or []%}
                 <li>{{x}}</li>
                 <p>{{reviews[x]}}</p>
                 <form action="http://127.0.0.1:5000/reviewed/" method="GET">

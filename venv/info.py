@@ -113,29 +113,30 @@ def see_result():
         delivery = ""
 
     my_server.current_restaurant = name
+    print("name: ", name)
 
     if request.method == "GET":
         result = request.form
-        return render_template("home.html", restaurant_name = name, address = formatted_address, summary = overview, phone_number = formatted_phone_number, website_link = website, reservations = reservable, ratings = rating, total_ratings = user_ratings_total, makes_deliveries = delivery, result = result)
+        return render_template("home.html", rest_name = name, address = formatted_address, summary = overview, phone_number = formatted_phone_number, website_link = website, reservations = reservable, ratings = rating, total_ratings = user_ratings_total, makes_deliveries = delivery, result = result)
 
 
 @app.route("/favorites/", methods = ["GET", "POST"])
 def send_to_favorites(): #shows favorites and adds to favorites
-    no_favorites = []
     if my_server.current_restaurant is None: #no restaurants to save
-        return render_template("favorites.html", favorites = no_favorites)
+        return render_template("favorites.html", favorites = [])
     elif my_server.current_restaurant is not False: #we are saving the restaurant
+        print("current rest: ", my_server.current_restaurant)
         my_server.favorites.add(my_server.current_restaurant)
         if my_server.current_restaurant not in my_server.reviews:
             my_server.reviews[my_server.current_restaurant] = ""
-    return render_template("favorites.html", favorites = my_server.favorites, reviews = my_server.reviews)
+    return render_template("favorites.html", favorites = sorted(list(my_server.favorites)), reviews = my_server.reviews)
     
 @app.route("/reviewed/", methods = ["GET", "POST"])
 def reviewed(): 
     if request.args.get("review"):
         review = request.args.get("review")
         restname = request.args.get("restname")
-        print(restname)
+        print("restname", restname)
         # x = request.args.get("name")
         # print(x)
         my_server.reviews[restname] = review
