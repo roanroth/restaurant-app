@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap');
+
+body {
+    background-color:#BFC2B7;    
+}
+
+header {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding: 15px;
+    border: 2px solid #3a4a3d;
+    font-family: 'Noto Serif JP', serif;
+}
+
+main {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding: 15px;
+    font-family: 'Noto Serif JP', serif;
+}
+
