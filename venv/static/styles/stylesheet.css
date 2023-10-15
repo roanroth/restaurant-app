@@ -1,23 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caudex&family=Playfair+Display+SC:wght@400;900&family=Playfair+Display:wght@400;600&display=swap');
 
 body {
-    background-color:#BFC2B7;    
+    background-image: url("images/background.png");    
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
 }
 
-header {
-    width: 90%;
-    margin: auto;
-    text-align: center;
-    padding: 15px;
-    border: 2px solid #3a4a3d;
-    font-family: 'Noto Serif JP', serif;
+.title {
+    font-size: 100px;
+    font-family: 'Playfair Display SC', serif;
+    font-weight: 400;
+    margin: -10px;
+}
+
+.subtext {
+    font-size: 20px;
+    font-family: 'Caudex', serif;
+}
+
+.search{
+    font-family: 'Caudex', serif;
+}
+
+.buttons {
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Caudex', serif;
+    background-color: white;
 }
 
 main {
     width: 90%;
-    margin: auto;
-    text-align: center;
-    padding: 15px;
-    font-family: 'Noto Serif JP', serif;
+    text-align: left;
+    padding-left: 15px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    top: 25%;
+    position: absolute;
+    flex-direction: column
 }
 
+.buttons:hover{
+    color: rgb(250, 177, 189);
+}
