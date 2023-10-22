@@ -12,7 +12,7 @@ body {
     font-size: 100px;
     font-family: 'Playfair Display SC', serif;
     font-weight: 400;
-    margin: -10px;
+    margin: -10px
 }
 
 .subtext {
@@ -34,8 +34,7 @@ body {
 
 main {
     width: 90%;
-    text-align: left;
-    padding-left: 15px;
+    text-align: center;
     gap: 10px;
     display: flex;
     align-items: center;
@@ -45,5 +44,5 @@ main {
 }
 
 .buttons:hover{
-    color: rgb(250, 177, 189);
+    color: rgb(55, 115, 52);
 }
