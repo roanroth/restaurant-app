@@ -3,27 +3,35 @@
 <html>
     <head>
         <title>Table Talk</title>
-        <link rel="stylesheet" href="stylesheet.css">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/home.css') }}" >
     </head>
     <body>
-        <h1><b>{{rest_name}}</b></h1>
+        <nav>
+            <div class="tabletalk">Table Talk</div>
+            <div class="navlinks">
+                <a href="http://127.0.0.1:5000/"><button class="navbuttons">Home</button></a>
+                <a href="http://127.0.0.1:5000/favorites"><button class="navbuttons">Favorites</button></a>
+            </div>
+        </nav>
+        <div class="line"><hr></div>
+        <main>
+            <h1 class="resttitle"><b>{{rest_name}}</b></h1>
 
-        <p>{{summary}}</p>
+            <p>{{summary}}</p>
 
-        <p>{{address}}</p>
+            <p>{{address}}</p>
 
-        <p>{{phone_number}}</p>
+            <p>{{phone_number}}</p>
 
-        <p><a href = {{website_link}}>{{website_link}}</a></p>
+            <p><a href = {{website_link}}>{{website_link}}</a></p>
 
-        <p>Rating: {{ratings}}, Total ratings: {{total_ratings}}</p>
-        <p>{{reservations}}</p>
-        <p>{{makes_deliveries}}</p>
-        <br>
-        <a href="http://127.0.0.1:5000/favorites/"><button>Save to Favorites</button></a>
-        <br>
-        <br>
-        <a href="http://127.0.0.1:5000/"><button>Return to Search</button></a>
-        
+            <p>Rating: {{ratings}}, Total ratings: {{total_ratings}}</p>
+            <p>{{reservations}}</p>
+            <p>{{makes_deliveries}}</p>
+            <br>
+            <a href="http://127.0.0.1:5000/favorites/"><button class="buttons">Save to Favorites</button></a>
+            <br>
+            <br>
+        </main>
     </body>
 </html>

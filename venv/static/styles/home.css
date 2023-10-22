@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Caudex&family=Playfair+Display+SC:wght@400;900&family=Playfair+Display:wght@400;600&display=swap');
+
+.resttitle{
+    font-size: 70px;
+    font-family: 'Playfair Display SC', serif;
+    font-weight: 900;
+}
+
+main {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    flex-direction: column;
+    font-family: 'Caudex', serif;
+}
+
+nav{
+    padding: 15px;
+}
+
+.tabletalk{
+    float: left;
+    font-size: 20px;
+    font-family: 'Playfair Display SC', serif;
+    font-weight: 400;
+}
+
+.buttons {
+    font-size: 24px;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Caudex', serif;
+    background-color: white;
+}
+
+.buttons:hover{
+    color: rgb(55, 115, 52);
+}
+
+.navbuttons {
+    font-size: 16px;
+    text-align: right;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Caudex', serif;
+    background-color: white;
+}
+
+.navlinks{
+    float: right;
+}
+
+.navbuttons:hover{
+    color: rgb(55, 115, 52);
+}
+
+.line{
+    padding: 15px;
+}
