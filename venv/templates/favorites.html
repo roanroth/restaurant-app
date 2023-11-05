@@ -3,29 +3,36 @@
 <html>
     <head>
         <title>Table Talk</title>
-        <link rel="stylesheet" href="stylesheet.css">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/favorites.css') }}" >
     </head>
     <body>
-        <h1><b>Favorites</b></h1>
+        <nav>
+            <div class="tabletalk">Table Talk</div>
+            <div class="navlinks">
+                <a href="http://127.0.0.1:5000/"><button class="navbuttons">Home</button></a>
+            </div>
+        </nav>
+        <div class="line"><hr></div>
+        <main>
+            <div class="favorites">Favorites</div>
 
-      
-        <ul>
-            {%for x in favorites or []%}
-                <li>{{x}}</li>
-                <p>{{reviews[x]}}</p>
-                <form action="http://127.0.0.1:5000/reviewed/" method="GET">
-                    <input type="text" id="review" name="review" value="">
-                    <input type="hidden" name="restname" value={{x}}>
+            <ul>
+                {%for x in favorites or []%}
+                    <li>{{x}}</li>
+                    <p>{{reviews[x]}}</p>
+                    <form action="http://127.0.0.1:5000/reviewed/" method="GET">
+                        <input type="text" id="review" name="review" value="">
+                        <input type="hidden" name="restname" value={{x}}>
+                        <br>
+                            <button type="submit" id="button">Add Review</button> 
+                        <br>
+                    </form>
                     <br>
-                         <button type="submit" id="button">Add Review</button> 
-                    <br>
-                </form>
-                <br>
-            {% endfor %}
-        </ul>
-            
-        <br>
-        <a href="http://127.0.0.1:5000/"><button>Back to Search</button></a>
-
+                {% endfor %}
+            </ul>
+                
+            <br>
+            <a href="http://127.0.0.1:5000/"><button class="buttons">Back to Search</button></a>
+        </main>
     </body>
 </html>
