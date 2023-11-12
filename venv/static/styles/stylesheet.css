@@ -46,3 +46,10 @@ main {
 .buttons:hover{
     color: rgb(55, 115, 52);
 }
+
+input[type=text] {
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}

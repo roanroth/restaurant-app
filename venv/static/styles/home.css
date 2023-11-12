@@ -60,3 +60,9 @@ nav{
     padding: 15px;
 }
 
+input[type=text] {
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}

@@ -33,9 +33,25 @@ nav{
     border-radius: 20px;
     font-family: 'Caudex', serif;
     background-color: white;
+
+    position: absolute;
+    bottom: 50px;
+    left: 45%;
 }
 
 .buttons:hover{
+    color: rgb(55, 115, 52);
+}
+
+.favbutton {
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Caudex', serif;
+    background-color: white;
+}
+
+.favbutton:hover{
     color: rgb(55, 115, 52);
 }
 
@@ -71,5 +87,13 @@ ul {
     list-style-type: none;
     text-align: left;
     list-style-position: inside;
-    padding: 100px;
+    padding-left: 100px;
+    padding-top: 50px;
+}
+
+input[type=text] {
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
 }

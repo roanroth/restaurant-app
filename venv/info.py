@@ -53,6 +53,8 @@ def see_result():
 
     if "formatted_phone_number" in result:
         formatted_phone_number = result["formatted_phone_number"]
+    else:
+        formatted_phone_number = "No phone number listed."
 
     if "website" in result:
         website = result["website"]
