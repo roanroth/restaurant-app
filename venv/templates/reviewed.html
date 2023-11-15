@@ -3,16 +3,23 @@
 <html>
     <head>
         <title>Table Talk</title>
-        <link rel="stylesheet" href="stylesheet.css">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/review.css') }}" >
     </head>
     <body>
-        <h1><b>Thanks for your review!</b></h1>
-        <h3>Here's what you wrote:</h3>
-        <p>{{review}}</p>
-        <br/>
-        <a href="http://127.0.0.1:5000/favorites/"><button>Back to Favorites</button></a>
-        <br/>
-        <a href="http://127.0.0.1:5000/"><button>Back to Search</button></a>
-
+        <nav>
+            <div class="tabletalk">Table Talk</div>
+            <div class="navlinks">
+                <a href="http://127.0.0.1:5000/"><button class="navbuttons">Home</button></a>
+            </div>
+        </nav>
+        <div class="line"><hr></div>
+        <main>
+            <div class="thanks">Thanks for your review!</div>
+            <div class="subtext">Here's what you wrote:</div>
+            <p>{{review}}</p>
+            <br/>
+        </main>
+        <div><a href="http://127.0.0.1:5000/favorites/"><button class="buttons">Back to Favorites</button></a></div>
+        <div><a href="http://127.0.0.1:5000/"><button class="buttons">Back to Search</button></a></div>
     </body>
 </html>

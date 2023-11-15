@@ -86,6 +86,9 @@ def see_result():
     if request.method == "GET":
         result = request.form
         return render_template("home.html", rest_name = name, address = formatted_address, summary = overview, phone_number = formatted_phone_number, website_link = website, reservations = reservable, ratings = rating, total_ratings = user_ratings_total, makes_deliveries = delivery, result = result)
+    
+def removeSpace(s): 
+    return s.replace(" ", "")
 
 @app.route("/favorites/", methods = ["GET", "POST"])
 def send_to_favorites(): #shows favorites and adds to favorites
@@ -105,3 +108,4 @@ def reviewed():
             my_server.reviews[official_name] = ""
         my_server.reviews[official_name] = review
         return render_template("reviewed.html", review = review, reviews = my_server.reviews)
+
