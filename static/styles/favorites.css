@@ -33,10 +33,7 @@ nav{
     border-radius: 20px;
     font-family: 'Caudex', serif;
     background-color: white;
-
-    position: absolute;
-    bottom: 50px;
-    left: 45%;
+    position: relative;
 }
 
 .buttons:hover{

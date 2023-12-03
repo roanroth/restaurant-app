@@ -2,7 +2,7 @@ class MyServer:
     def __init__(self):
         self.favorites = set()
         self.current_restaurant = None
-        self.reviews = {}
+        self.id_to_reviews = {}
         self.short_to_official_name = {}
         self.id_to_name = {}
 
@@ -104,7 +104,7 @@ def send_to_favorites(): #shows favorites and adds to favorites
         return render_template("favorites.html", favorites = [])
     elif my_server.current_restaurant is not False: #we are saving the restaurant
         my_server.favorites.add(my_server.current_restaurant)
-    return render_template("favorites.html", favorites = sorted(list(my_server.favorites)), names=my_server.id_to_name, reviews = my_server.reviews)
+    return render_template("favorites.html", favorites = my_server.favorites, names = my_server.id_to_name, reviews = my_server.id_to_reviews)
     
 @app.route("/reviewed/", methods = ["GET", "POST"])
 def reviewed(): 
@@ -114,10 +114,11 @@ def reviewed():
 
         official_name = my_server.id_to_name[restaurant_id]
 
-        if official_name not in my_server.reviews:
-            my_server.reviews[official_name] = ""
+        if official_name not in my_server.id_to_reviews:
+            my_server.id_to_reviews[official_name] = ""
 
-        my_server.reviews[restaurant_id] = review
+        my_server.id_to_reviews[restaurant_id] = review
 
-        return render_template("reviewed.html", review = review, reviews = my_server.reviews)
-
+        return render_template("reviewed.html", review = review, reviews = my_server.id_to_reviews)
+    else:
+        return redirect("/favorites/")

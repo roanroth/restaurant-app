@@ -34,28 +34,30 @@ nav{
     font-weight: 400;
 }
 
-.buttons {
+.searchbutton {
     font-size: 24px;
     border: none;
     border-radius: 20px;
     font-family: 'Caudex', serif;
     background-color: white;
-
     position: absolute;
-    bottom: 50px;
-    left: 45%;
+    padding-top: 400px;
+    left: 44%;
 }
 
-.buttons:hover{
+.searchbutton:hover{
     color: rgb(55, 115, 52);
 }
 
 .favbutton {
-    font-size: 25px;
+    font-size: 24px;
     border: none;
     border-radius: 20px;
     font-family: 'Caudex', serif;
     background-color: white;
+    position: absolute;
+    padding-top: 450px;
+    left: 43.2%;
 }
 
 .favbutton:hover{
