@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Table Talk</title>
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/review.css') }}" >
-    </head>
-    <body>
-        <nav>
-            <div class="tabletalk">Table Talk</div>
-            <div class="navlinks">
-                <a href="http://127.0.0.1:5000/"><button class="navbuttons">Home</button></a>
-            </div>
-        </nav>
-        <div class="line"><hr></div>
-        <main>
-            <div class="thanks">Thanks for your review!</div>
-            <div class="subtext">Here's what you wrote:</div>
-            <p>{{review}}</p>
-            <br/>
-            <div><a href="http://127.0.0.1:5000/favorites/"><button class="favbutton">Back to Favorites</button></a></div>
-            <div><a href="http://127.0.0.1:5000/"><button class="searchbutton">Back to Search</button></a></div>
-        </main>
-    </body>
+  <head>
+    <title>Table Talk</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/review.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="tabletalk">Table Talk</div>
+      <div class="navlinks">
+        <a href="http://127.0.0.1:5000/"
+          ><button class="navbuttons">Home</button></a
+        >
+      </div>
+    </nav>
+    <div class="line"><hr /></div>
+    <main>
+      <div class="thanks">Thanks for your review!</div>
+      <div class="subtext">Here's what you wrote:</div>
+      <p>{{review}}</p>
+      <br />
+    </main>
+    <div>
+      <a href="http://127.0.0.1:5000/favorites/"
+        ><button class="buttons fav">Back to Favorites</button></a
+      >
+    </div>
+    <div>
+      <a href="http://127.0.0.1:5000/"
+        ><button class="buttons">Back to Search</button></a
+      >
+    </div>
+  </body>
 </html>
