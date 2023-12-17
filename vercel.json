@@ -11,5 +11,11 @@
             "src": "/(.*)",
             "dest": "/info.py"
         }
+    ],
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/"
+        }
     ]
 }
