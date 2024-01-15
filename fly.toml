@@ -1,12 +1,16 @@
-# fly.toml app configuration file generated for restaurant-app on 2024-01-15T10:55:20-05:00
+# fly.toml app configuration file generated for restaurant-app-crimson-moon-1938 on 2024-01-15T13:10:38-05:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "restaurant-app"
+app = "restaurant-app-crimson-moon-1938"
 primary_region = "ewr"
 
 [build]
+  builder = "paketobuildpacks/builder:base"
+
+[env]
+  PORT = "8080"
 
 [http_service]
   internal_port = 8080
