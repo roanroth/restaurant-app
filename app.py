@@ -11,10 +11,6 @@ import requests
 
 app = Flask(__name__)
 
-app.config.update({
-    'APPLICATION_ROOT': 'https://restaurant-app.fly.dev'
-})
-
 port = 8080
 
 my_server = MyServer()

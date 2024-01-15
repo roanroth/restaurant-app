@@ -13,7 +13,7 @@
     <nav>
       <div class="tabletalk">Table Talk</div>
       <div class="navlinks">
-        <a href="http://127.0.0.1:5000/"
+        <a href="/"
           ><button class="navbuttons">Home</button></a
         >
       </div>
@@ -26,7 +26,7 @@
         {%for x in favorites or []%}
         <li>{{names[x]}}</li>
         <p>{{reviews[x]}}</p>
-        <form action="http://127.0.0.1:5000/reviewed/" method="GET">
+        <form action="/reviewed" method="GET">
           <input type="text" id="review" name="review" value="" />
           <input type="hidden" name="restname" value="{{x}}" />
           <br />
@@ -43,7 +43,7 @@
     </main>
   </body>
   <footer>
-    <a href="http://127.0.0.1:5000/"
+    <a href="/"
       ><button class="buttons">Back to Search</button></a>
   </footer>
 </html>
