@@ -11,6 +11,8 @@ import requests
 
 app = Flask(__name__)
 
+port = 8080
+
 my_server = MyServer()
 
 @app.route("/", methods = ["GET", "POST"])
@@ -18,8 +20,6 @@ def search_restaurant():
     if my_server.current_restaurant is not None:
         my_server.current_restaurant = False
     return render_template("index.html")
-
-# first opens search-restaurant which opens index. then that takes us to home.html (below) with all the info 
 
 @app.route("/home/", methods = ["GET", "POST"])
 def see_result():
@@ -122,3 +122,6 @@ def reviewed():
         return render_template("reviewed.html", review = review, reviews = my_server.id_to_reviews)
     else:
         return redirect("/favorites/")
+    
+if __name__ == "__main__":
+   app.run(port=port)
