@@ -27,7 +27,7 @@ def see_result():
     if not restaurant_name:
         return redirect("/")
 
-    URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + restaurant_name + "&inputtype=textquery&key=AIzaSyA_ybZQmfLjIyDVYe70wth69R25CMy9kww"
+    URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + restaurant_name + "%20restaurant%20new%20york&inputtype=textquery&key=AIzaSyA_ybZQmfLjIyDVYe70wth69R25CMy9kww"
     data = requests.get(url = URL).json()
     place_id = data["candidates"][0]["place_id"]
 
